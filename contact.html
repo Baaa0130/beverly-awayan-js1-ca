@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>API Call Test - Contact</title>
+    <link href="style.css" rel="stylesheet">
+    <link data-n-head="ssr" rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css">
+  </head>
+  <body>
+    <div class="nav">
+      <a href="index.html">Home</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+
+    <div class="container">
+      <div class="card contact no-hover">
+        <div class="box">
+          <div class="content">
+            <div class="success-box">
+              <i class="far fa-check-circle"></i>
+              Submitted
+            </div>
+            <div class="field">
+              <label>Name:</label>
+              <div class="input-div">
+                <input type="text" class="name" />
+                <div class="error-message name"></div>
+              </div>
+            </div>
+            <div class="field">
+              <label>Subject:</label>
+              <div class="input-div">
+                <input type="text" class="subject" />
+                <div class="error-message subject"></div>
+              </div>
+            </div>
+            <div class="field">
+              <label>Email:</label>
+              <div class="input-div">
+                <input type="text" class="email" />
+                <div class="error-message email"></div>
+              </div>
+            </div>
+            <div class="field">
+              <label>Address:</label>
+              <div class="input-div">
+                <input type="text" class="address" />
+                <div class="error-message address"></div>
+              </div>
+            </div>
+            <a href="javascript:;" class="submit" onclick="validate()">Submit</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    var validate = function () {
+      let inputs = document.querySelectorAll('input')
+      let errorMsgs = document.querySelectorAll('.error-message')
+
+      // Reset error class
+      inputs.forEach(input => {
+        input.classList.remove('has-error');
+      })
+
+      // Reset error messages
+      errorMsgs.forEach(message => {
+        message.innerHTML = ''
+      })
+
+      let hasError = false
+
+      // Validate NAME
+      if (document.querySelector('.name').value === '') {
+        document.querySelector('.name').classList.add('has-error')
+        document.querySelector('.error-message.name').innerHTML = 'This is a required field'
+        hasError = true
+      }
+
+      // Validate SUBJECT
+      if (document.querySelector('.subject').value.length < 10) {
+        document.querySelector('.subject').classList.add('has-error')
+        document.querySelector('.error-message.subject').innerHTML = 'Subject must be atleast 10 characters'
+        hasError = true
+      }
+      if (document.querySelector('.subject').value === '') {
+        document.querySelector('.subject').classList.add('has-error')
+        document.querySelector('.error-message.subject').innerHTML = 'This is a required field'
+        hasError = true
+      }
+
+      // Validate EMAIL
+      if (!this.validateEmail(document.querySelector('.email').value)) {
+        document.querySelector('.email').classList.add('has-error')
+        document.querySelector('.error-message.email').innerHTML = 'Invalid email format'
+        hasError = true
+      }
+      if (document.querySelector('.email').value === '') {
+        document.querySelector('.email').classList.add('has-error')
+        document.querySelector('.error-message.email').innerHTML = 'This is a required field'
+        hasError = true
+      }
+
+      // Validate ADDRESS
+      console.log(document.querySelector('.address').value.length)
+      if (document.querySelector('.address').value.length < 25) {
+        document.querySelector('.address').classList.add('has-error')
+        document.querySelector('.error-message.address').innerHTML = 'Address must be atleast 25 characters'
+        hasError = true
+      }
+      if (document.querySelector('.address').value === '') {
+        document.querySelector('.address').classList.add('has-error')
+        document.querySelector('.error-message.address').innerHTML = 'This is a required field'
+        hasError = true
+      }
+
+      if (!hasError) {
+        document.querySelector('.name').value = ''
+        document.querySelector('.subject').value = ''
+        document.querySelector('.email').value = ''
+        document.querySelector('.address').value = ''
+
+        document.querySelector('.success-box').classList.add('show')
+        setTimeout(function () {
+          document.querySelector('.success-box').classList.remove('show')
+        }, 4000)
+      }
+    }
+
+    var validateEmail = function (email) {
+      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    }
+  </script>
+</html>

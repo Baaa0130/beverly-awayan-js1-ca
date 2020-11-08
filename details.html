@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>API Call Test - Details</title>
+    <link href="style.css" rel="stylesheet">
+    <link data-n-head="ssr" rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css">
+  </head>
+  <body>
+    <div class="nav">
+      <a href="index.html">Home</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="container">
+    </div>
+
+    <div id="cloneElement" class="card details no-hover" style="display:none">
+      <div class="box">
+        <div class="content">
+          <h2></h2>
+          <span class="email"></span>
+          <br/>
+          <span class="mobile"></span>
+          <br/>
+          <span class="address"></span>
+          <br/>
+          <a href="" class="website"></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let request = new XMLHttpRequest();
+    var url_string = window.location.href
+    var url = new URL(url_string);
+    var id = url.searchParams.get("id");
+
+    request.open('GET', `https://jsonplaceholder.typicode.com/users/${id}`);
+    request.send();
+    request.onload = () => {
+      if (request.status === 200) {
+        let user = JSON.parse(request.response)
+        let clone =  document.getElementById('cloneElement').cloneNode(true)
+        clone.style.display = "block"
+        clone.childNodes[1].childNodes[1].childNodes[1].innerHTML = user.name
+        clone.childNodes[1].childNodes[1].childNodes[3].innerHTML = user.email
+        clone.childNodes[1].childNodes[1].childNodes[7].innerHTML = user.phone
+        clone.childNodes[1].childNodes[1].childNodes[11].innerHTML = `${user.address.street}, ${user.address.city}`
+        clone.childNodes[1].childNodes[1].childNodes[15].attributes[0].value = `http://${user.website}`
+        clone.childNodes[1].childNodes[1].childNodes[15].innerHTML = `http://${user.website}`
+        // clone.childNodes[1].childNodes[1].childNodes[11].attributes[0].value = `details.html?id=${user.id}`
+
+        document.querySelector(".container").appendChild(clone)
+      } else {
+        console.log('ERROR', request.status, '-', request.statusText);
+      }
+    }
+  </script>
+</html>

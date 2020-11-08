@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Didact Gothic', sans-serif;
+}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f1fcff;
+  background: linear-gradient(0deg, #369, #f1fcff);
+  position: relative;
+  padding-top: 40px;
+}
+.nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #333;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  z-index: 3;
+}
+.nav a{
+  color: #fff;
+  font-size: 1.3em;
+  font-weight: 300;
+  line-height: 2;
+  padding: 0 10px;
+  margin: 0 10px;
+}
+.nav a.active{
+  color: #03a9f4;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  flex-wrap: wrap;
+  padding: 40px 0;
+}
+
+.container .card{
+  position: relative;
+  background: rgba(255,255,255, .7);
+  min-width: 320px;
+  height: 270px;
+  box-shadow: inset 5px 5px 5px rgba(0,0,0, .05),
+    inset -5px -5px 5px  rgba(255,255,255, .05),
+    5px 5px 5px  rgba(0,0,0, .05),
+    -5px -5px 5px  rgba(255,255,255, .05);
+  border-radius: 15px;
+  margin: 10px;
+}
+.container .card.no-hover{
+  min-width: 450px;
+}
+
+.container .card .box{
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background: #abdcee;
+  box-shadow: 0 10px 20px rgba(0,0,0,.1);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .3s;
+}
+.container .card:hover:not(.no-hover) .box{
+  box-shadow: 0 10px 40px rgba(0,0,0,.2);
+  background: linear-gradient(180deg, #369, #333);
+  transform: translateY(-30px);
+}
+
+.container .card  .content{
+  padding: 20px;
+  text-align: center;
+}
+
+.container .card  .content h2{
+  font-size: 1.8em;
+  color: #333;
+  z-index: 1;
+  transition: .3s;
+}
+.container .card .content span{
+  font-size: .9em;
+  font-weight: 300;
+  color: #555;
+  z-index: 1;
+  transition: .3s;
+}
+.container .card:hover:not(.no-hover) .content h2,
+.container .card:hover:not(.no-hover) .content span{
+  color: #fff;
+}
+.details .email{
+  margin-top: 10px;
+  display: inline-block;
+}
+.details .address{
+  margin-top: 20px;
+  display: inline-block;
+}
+.container .card .box .content a{
+  position: relative;
+  display: inline-block;
+  color: #ff568f;
+  text-decoration: none;
+  font-weight: 400;
+}
+.container .card .box .content a:not(.website){
+  padding: 8px 20px;
+  color: #fff;
+  background: #03a9f4;
+  margin-top: 15px;
+  border-radius: 20px;
+  box-shadow: 0 3px 5px rgba(0,0,0, .2);
+}
+.container .card:hover:not(.no-hover) .content a{
+  background: #ff568f;
+}
+
+/* Contact */
+.contact{
+  height: 440px!important;
+}
+.contact .box{
+  background: linear-gradient(180deg, #369, #333)!important;
+}
+.contact .content{
+  width: 100%;
+  height: 100%;
+}
+.contact .success-box{
+  background: #34d56d;
+  color: #fff;
+  margin: 0 10px;
+  line-height: 2;
+  border-radius: 2px;
+  font-size: 21px;
+  box-shadow: 0 3px 5px rgba(0,0,0, .2);
+  height: 0;
+  overflow: hidden;
+}
+.contact .success-box.show{
+  height: auto;
+}
+.contact .field{
+  width: 100%;
+  margin-top: 15px;
+  color: #fff;
+}
+.contact .field label{
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  vertical-align: top;
+  padding-right: 5px;
+  padding-top: 5px;
+}
+.contact .field .input-div{
+  width: calc(100% - 110px);
+  display: inline-block;
+}
+.contact .field input{
+  width: 100%;
+  border-radius: 2px;
+  border: 2px solid #03a9f4;
+  padding: 5px;
+  vertical-align: -5px;
+}
+.contact .field input.has-error{
+  border-color: #e45757;
+  border-radius: 0;
+}
+.contact .error-message{
+  /* padding-left: 100px; */
+  color: #fff;
+  background: #e45757;
+  text-align: left;
+  font-size: 13px;
+  line-height: 1.4;
+  font-style: italic;
+}
+.submit{
+  padding: 8px 40px!important;
+  margin-top: 30px!important;
+}
